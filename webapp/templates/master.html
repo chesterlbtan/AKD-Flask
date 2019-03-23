@@ -1,0 +1,14 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - AutoKDownload</title>
+        {% else %}
+        <title>Welcome to AutoKDownload</title>
+        {% endif %}
+    </head>
+    <body>
+        <div>AutoKDownload: <a href="/index">Home</a></div>
+        <hr>
+        {% block content %}{% endblock %}
+    </body>
+</html>

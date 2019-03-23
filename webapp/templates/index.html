@@ -1,0 +1,23 @@
+{% extends "master.html" %}
+
+{% block content %}
+    {% if jobs %}
+    <h1>Pending jobs:</h1>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Link</th>
+            <th>Status</th>
+        </tr>
+        {% for job in jobs %}
+        <tr>
+            <td>{{ job.title }}</td>
+            <td>{{ job.baselink }}</td>
+            <td>{{ job.status }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <h1>No pending jobs...</h1>
+    {% endif %}
+{% endblock %}
