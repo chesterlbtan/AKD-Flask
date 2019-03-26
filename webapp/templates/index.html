@@ -3,18 +3,34 @@
 {% block content %}
     {% if jobs %}
     <h1>Pending jobs:</h1>
-    <table>
-        <tr>
-            <th>Title</th>
-            <th>Link</th>
-            <th>Status</th>
-        </tr>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Status</th>
+                <th scope="col">Progress</th>
+                <th scope="col">Link</th>
+            </tr>
+        </thead>
         {% for job in jobs %}
         <tr>
-            <td>{{ job.title }}</td>
-            <td>{{ job.baselink }}</td>
+            <th scope="row">
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".wm{{ job.id }}" aria-expanded="false">
+                    {{ job.title }}
+                </button>
+            </th>
             <td>{{ job.status }}</td>
+            <td>{{ job.progress }}</td>
+            <td>{{ job.baselink }}</td>
         </tr>
+        {% for epi in job.episodes %}
+        <tr class="collapse wm{{ job.id }}">
+            <td>Episode {{ epi.number }}</td>
+            <td>{{ epi.status }}</td>
+            <td>{{ epi.progress }}</td>
+            <td>{{ epi.download_link }}</td>
+        </tr>
+        {% endfor %}
         {% endfor %}
     </table>
     {% else %}
