@@ -11,6 +11,8 @@ class Watchables(db.Model):
     remarks = db.Column(db.TEXT)
     datetimeadded = db.Column(db.DATE, nullable=False)
     lastupdate = db.Column(db.DATE, nullable=False)
+    _episodes = db.relationship('Episodes', backref='series', lazy='dynamic')
+    _stat = db.relationship('Status', backref='series', lazy='dynamic')
 
     def __repr__(self):
         return f'<Watchables {self.id}>'
