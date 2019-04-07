@@ -1,10 +1,12 @@
 import os
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'Aeon Klebang'
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')\
-                              or "postgres://chester:hello987@192.168.0.50:5432/anghari_db"
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or ("sqlite:///" + os.path.join(basedir, 'anghari.db'))
+    # "postgres://username:password@hostname:5432/dbname"
+    # ("sqlite:///" + os.path.join(basedir, 'anghari.db'))
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # --- FOR EMAIL ERROR SENDING ---

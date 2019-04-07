@@ -1,5 +1,6 @@
-from flask import render_template
+from flask import render_template, flash, redirect, url_for
 from webapp import app
+from webapp.forms import AddSeriesForm
 
 
 @app.route('/')
@@ -28,3 +29,12 @@ def index():
          ]}
     ]
     return render_template('index.html', title='Home', jobs=jobs)
+
+
+@app.route('/add', methods=['GET', 'POST'])
+def addseries():
+    form = AddSeriesForm()
+    if form.validate_on_submit():
+        flash(f'Successfully added [{form.year.data}] - {form.title.data}, {form.link.data}')
+        return redirect(url_for('index'))
+    return render_template('addseries.html', title='Add New Series', form=form)

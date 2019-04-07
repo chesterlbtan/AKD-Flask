@@ -47,3 +47,18 @@ class Episodes(db.Model):
     datetimeadded = db.Column(db.DATE, nullable=False)
     lastupdate = db.Column(db.DATE, nullable=False)
     location = db.Column(db.TEXT)
+
+
+class RunningMan(db.Model):
+    __tablename_ = 'runningman'
+    rid = db.Column(db.INTEGER, primary_key=True)
+    episode = db.Column(db.INTEGER, nullable=False)
+    status = db.Column(db.TEXT, nullable=False)
+    size = db.Column(db.INTEGER)
+    progress = db.Column(db.FLOAT)
+    duration = db.Column(db.INTEGER)
+    base_link = db.Column(db.TEXT, nullable=False)
+    dlink = db.Column(db.TEXT)
+    datetimeadded = db.Column(db.DATETIME, nullable=False)
+    lastupdate = db.Column(db.DATETIME, nullable=False)
+    location = db.Column(db.TEXT)
