@@ -8,3 +8,9 @@ class AddSeriesForm(FlaskForm):
     year = IntegerField('Year', validators=[DataRequired()])
     link = StringField('Link', validators=[DataRequired()])
     submit = SubmitField('Add')
+
+
+class AddRMForm(FlaskForm):
+    episode = IntegerField('Episode', validators=[DataRequired()])
+    link = StringField('Link', validators=[DataRequired()])
+    submit = SubmitField('Add')

@@ -1,3 +1,4 @@
+import contextlib
 from webapp import db
 
 
@@ -62,3 +63,4 @@ class RunningMan(db.Model):
     datetimeadded = db.Column(db.DATETIME, nullable=False)
     lastupdate = db.Column(db.DATETIME, nullable=False)
     location = db.Column(db.TEXT)
+
