@@ -51,7 +51,7 @@ class Episodes(db.Model):
 
 
 class RunningMan(db.Model):
-    __tablename_ = 'runningman'
+    __tablename__ = 'runningman'
     rid = db.Column(db.INTEGER, primary_key=True)
     episode = db.Column(db.INTEGER, nullable=False)
     status = db.Column(db.TEXT, nullable=False)

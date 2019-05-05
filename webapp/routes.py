@@ -72,6 +72,18 @@ def addseries():
     return render_template('addseries.html', title='Add New Series', form=form)
 
 
+@app.route('/runningman')
+def rm():
+    jobs = []
+    sqw = RunningMan.query.all()
+    for wj in sqw:
+        item = {'id': wj.rid, 'episode': wj.episode, 'status': wj.status, 'progress': wj.progress,
+                'lastupdate': wj.lastupdate}
+        jobs.append(item)
+    jobs.sort(key=lambda k: k['episode'])
+    return render_template('rm.html', title='Running Man', jobs=jobs)
+
+
 @app.route('/runningman/add', methods=['GET', 'POST'])
 def addrm():
     form = AddRMForm()
@@ -82,9 +94,9 @@ def addrm():
         item.status = 'new'
         item.datetimeadded = datetime.datetime.now()
         item.lastupdate = datetime.datetime.now()
-        # db.session.add(item)
-        # db.session.commit()
+        db.session.add(item)
+        db.session.commit()
 
-        flash(f'Successfully added <{item.id}> [{form.year.data}] - {form.title.data}, {form.link.data}')
-        return redirect(url_for('index'))
+        flash(f'Successfully added <{item.rid}> RunningMan Ep{item.episode}')
+        return redirect(url_for('rm'))
     return render_template('addrm.html', title='Queue Running Man Episodes', form=form)

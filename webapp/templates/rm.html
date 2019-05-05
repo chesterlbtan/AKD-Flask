@@ -1,0 +1,27 @@
+{% extends "master.html" %}
+
+{% block content %}
+    {% if jobs %}
+    <h1>Pending jobs:</h1>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Episode</th>
+                <th scope="col">Status</th>
+                <th scope="col">Progress</th>
+                <th scope="col">LastUpdate</th>
+            </tr>
+        </thead>
+        {% for job in jobs %}
+        <tr>
+            <th scope="row">{{ job.episode }}</th>
+            <td>{{ job.status }}</td>
+            <td>{{ job.progress }}</td>
+            <td>{{ job.lastupdate }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <h1>No pending jobs...</h1>
+    {% endif %}
+{% endblock %}
