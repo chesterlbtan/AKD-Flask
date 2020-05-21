@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, SubmitField
+from wtforms import StringField, IntegerField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired
 
 
@@ -14,3 +14,9 @@ class AddRMForm(FlaskForm):
     episode = IntegerField('Episode', validators=[DataRequired()])
     link = StringField('Link', validators=[DataRequired()])
     submit = SubmitField('Add')
+
+
+class EditEpisodeForm(FlaskForm):
+    status = StringField('Status', validators=[DataRequired()])
+    dl_link = TextAreaField('DL Link', validators=[DataRequired()])
+    submit = SubmitField('Update')

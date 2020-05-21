@@ -2,7 +2,7 @@
 
 {% block content %}
     {% if jobs %}
-    <h1>Pending jobs:</h1>
+    <h1>Jobs:</h1>
     <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -18,6 +18,9 @@
                 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".wm{{ job.id }}" aria-expanded="false">
                     {{ job.title }}
                 </button>
+                {% if showedit %}
+                <a href="{{ url_for('adminedit', showid=job.id) }}">*</a>
+                {% endif %}
             </th>
             <td>{{ job.status }}</td>
             <td>{{ job.progress }}</td>
@@ -25,7 +28,11 @@
         </tr>
         {% for epi in job.episodes %}
         <tr class="collapse wm{{ job.id }}" style="background-color: #EDEDED; font-size: small">
+            {% if showedit %}
+            <td><a href="{{ url_for('adminedit', epid=epi.epid) }}">Episode {{ epi.number }}</a></td>
+            {% else %}
             <td>Episode {{ epi.number }}</td>
+            {% endif %}
             <td>{{ epi.status }}</td>
             <td>{{ epi.progress }}</td>
             <td>{{ epi.download_link }}</td>

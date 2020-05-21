@@ -1,0 +1,38 @@
+{% extends "master.html" %}
+
+{% block content %}
+    <h2>Episode ID: {{ job.episode }}</h2>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Original Value</th>
+                    <th scope="col">New Value</th>
+                </tr>
+            </thead>
+            <tr>
+                <td>Series title</td>
+                <td>{{ job.title }}</td>
+                <td>no edit allowed</td>
+            </tr>
+            <tr>
+                <td>Episode number</td>
+                <td>{{ job.episode }}</td>
+                <td>no edit allowed</td>
+            </tr>
+            <tr>
+                <td>Episode status</td>
+                <td>{{ job.status }}</td>
+                <td>{{ form.status(size=16) }}</td>
+            </tr>
+            <tr>
+                <td>Episode DL link</td>
+                <td>{{ job.link }}</td>
+                <td>{{ form.dl_link(cols=64, rows=10) }}</td>
+            </tr>
+        </table>
+        <center>{{ form.submit() }}</center>
+    </form>
+{% endblock %}
